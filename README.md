@@ -8,9 +8,6 @@
   https://gnu.org/licenses/lgpl.html)
 [![](https://img.shields.io/pypi/pyversions/zetup?label=Python)](
   https://python.org)
-
-
-
 [![](https://img.shields.io/pypi/v/zetup?label=PyPI)](
   https://pypi.python.org/pypi/zetup)
 [![](https://img.shields.io/pypi/dd/zetup?label=Downloads)](
