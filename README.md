@@ -30,11 +30,9 @@
 
 
 
-> **Hg repo:**
+**Hg** repository: https://bitbucket.org/zimmermanncode/zetup
 
-* https://bitbucket.org/zimmermanncode/zetup
-
-> **Git mirror repos:**
+**Git** mirror repositories:
 
 * https://github.com/zimmermanncode/zetup
 * https://gitlab.com/zimmermanncode/zetup
