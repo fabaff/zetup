@@ -1,36 +1,40 @@
 
 
-# ZETUP
+# ZETUP |  Zimmermann's Extensible Tools for Unified Projects
 
 
 
 [![](http://www.gnu.org/graphics/lgplv3-88x31.png)](
   https://gnu.org/licenses/lgpl.html)
-[![](https://img.shields.io/pypi/pyversions/zetup.svg)](
+[![](https://img.shields.io/pypi/pyversions/zetup?label=Python)](
   https://python.org)
-
-
-
-[![](https://img.shields.io/pypi/v/zetup.svg)](
+[![](https://img.shields.io/pypi/v/zetup?label=PyPI)](
   https://pypi.python.org/pypi/zetup)
-[![](https://img.shields.io/pypi/dd/zetup.svg)](
+[![](https://img.shields.io/pypi/dd/zetup?label=Downloads)](
   https://pypi.python.org/pypi/zetup)
 
 
 
-[![](https://travis-ci.org/zimmermanncode/zetup.svg?branch=master)](
-  https://travis-ci.org/userzimmermann/zetup.py)
-[![Build status](https://ci.appveyor.com/api/projects/status/3wm8jnisoft5x7qr?svg=true)](
-  https://ci.appveyor.com/project/userzimmermann/zetup-py)
+[![Linux build status](
+  https://img.shields.io/travis/zimmermanncode/zetup/master?label=Linux%20build)](
+  https://travis-ci.org/zimmermanncode/zetup)
+[![Windows build status](
+  https://img.shields.io/appveyor/ci/zimmermanncode/zetup/master?label=Windows%20build)](
+  https://ci.appveyor.com/project/zimmermanncode/zetup)
 
 
 
-## Zimmermann's Extensible Tools for Unified Project setups
+[![Open Hub project](
+  http://www.openhub.net/p/python-zetup/widgets/project_thin_badge.gif)](
+  https://www.openhub.net/p/python-zetup)
 
 
 
-* https://bitbucket.org/zimmermanncode/zetup
+**Hg** repository: https://bitbucket.org/zimmermanncode/zetup
+
+**Git** mirror repositories:
+
 * https://github.com/zimmermanncode/zetup
 * https://gitlab.com/zimmermanncode/zetup
-* https://www.openhub.net/p/python-zetup
+
 
