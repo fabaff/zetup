@@ -83,7 +83,8 @@ class module(ModuleType, object):
     def __init__(
             self, name, __all__=None,
             aliases=None, deprecated_aliases=None,
-            __getitem__=None, __iter__=None, __call__=None):
+            __getitem__=None, __iter__=None, __call__=None,
+            __getattr__=None, __dir__=None):
         """
         Wrap a package module given by `name`.
 
@@ -125,6 +126,8 @@ class module(ModuleType, object):
         #             (name, submodname) for name in members)
 
         cls = type(self)
+        cls.__getattr__.funcs[self] = __getattr__
+        cls.__dir__.funcs[self] = __dir__
         cls.__getitem__.funcs[self] = __getitem__
         cls.__iter__.funcs[self] = __iter__
         cls.__call__.funcs[self] = __call__
@@ -175,6 +178,31 @@ class module(ModuleType, object):
             getattr(self.__module__, '__all__', ()), (
                 name for name in self.__dict__['__all__']
                 if not isinstance(name, deprecated)))))
+
+    def __getattr__(self, name):
+        if name.startswith('__'):
+            raise AttributeError(
+                "{!r} has no attribute {!r}".format(self, name))
+
+        cls = type(self)
+        func = cls.__getattr__.funcs.get(self)
+
+        if func is None:
+            raise AttributeError(
+                "{!r} has no attribute {!r} "
+                "and no __getattr__ implementation. "
+                "Instantiate {!r} with __getattr__=<func> to change that."
+                .format(self, name, cls))
+
+        try:
+            return func(name)
+
+        except AttributeError as exc:
+            raise AttributeError(
+                "{!r} has no attribute {!r} ({})"
+                .format(self, name, exc))
+
+    __getattr__.funcs = {}
 
     def __setattr__(self, name, value):
         """
@@ -232,6 +260,7 @@ class module(ModuleType, object):
                         "{!r} has no attribute {!r} although listed in "
                         "__all__".format(self.__module__, name))
 
+        # and this will finally trigger .__getattr__
         raise AttributeError(
             "{!r} has no attribute {!r}".format(self, name))
 
@@ -251,11 +280,18 @@ class module(ModuleType, object):
                 if ismodule(obj) and not isinstance(obj, package):
                     yield name
 
+        # is there a custom extra __dir__ function defined?
+        cls = type(self)
+        func = cls.__dir__.funcs.get(self)
+        extra = func() if func is not None else ()
+
         return list(chain(
             set(
                 object.__dir__(self)  # pylint: disable=no-member
             ).difference(exclude()),
-            self.__all__))
+            self.__all__, extra))
+
+    __dir__.funcs = {}
 
     def __repr__(self):
         """Create module-style representation."""
