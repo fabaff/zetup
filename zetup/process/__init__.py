@@ -112,20 +112,21 @@ if sys.platform.startswith('win'):
             path = _find(command)
             return chain([path], args)
 
-else: # no Windows ==> just pass through
+else:  # no Windows ==> just pass through
     def _command(command, kwargs):
         return command
 
 
 def _prepare_kwargs(kwargs):
-    """Prepare (manipulate) the given `kwargs` dict for passing to
-       :func:`subprocess.call` or :class:`subprocess.Popen`
-       by resolving any zetup-specific stuff.
+    """
+    Prepare (manipulate) the given `kwargs` dict for ``subprocess``.
+
+    By resolving any zetup-specific stuff
     """
     env = kwargs.get('env')
     if env is None:
-        env = kwargs['env'] = dict(os.environ,
-          PYTHONPATH=os.pathsep.join(sys.path))
+        env = kwargs['env'] = dict(
+            os.environ, PYTHONPATH=os.pathsep.join(map(str, sys.path)))
 
     env.update(kwargs.pop('env_update', {}))
     for key, value in kwargs.pop('env_defaults', {}).items():
