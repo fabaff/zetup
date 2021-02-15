@@ -29,9 +29,6 @@
   https://www.openhub.net/p/python-zetup)
 
 
-
-**Hg** repository: https://bitbucket.org/zimmermanncode/zetup
-
 **Git** mirror repositories:
 
 * https://github.com/zimmermanncode/zetup
